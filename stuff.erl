@@ -1,5 +1,7 @@
--module(recursion).
--export([len/1, tail_len/1, duplicate/2, tail_duplicate/2]).
+-module(stuff).
+-export([
+        len/1, tail_len/1, duplicate/2, tail_duplicate/2, reverse/1, tail_reverse/1
+        ]).
 
 % len list
 % return the length of a list applying recursion
@@ -28,4 +30,18 @@ tail_duplicate(N, Term) ->
 tail_duplicate(0, _, List) -> List;
 tail_duplicate(N, Term, List) when N > 0 ->
   tail_duplicate(N-1, Term, [Term|List]).
+
+% reverse list
+% returns list but reversed! !t00w
+reverse([]) -> [];
+reverse([H|T]) -> reverse(T) ++ [H].
+
+% tail_reverse list
+% returns list but tail reversed! !t00w yggip
+% {little piggy}
+tail_reverse(L) -> tail_reverse(L, []).
+
+tail_reverse([], List) -> List;
+tail_reverse([H|T], List) ->
+  tail_reverse(T, [H|List]).
 

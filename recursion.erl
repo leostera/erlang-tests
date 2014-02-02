@@ -1,4 +1,4 @@
--module(recursive).
+-module(recursion).
 -export([len/1]).
 
 % so functions can be defined by cases

@@ -1,6 +1,6 @@
 -module(stuff).
 -export([
-        len/1, tail_len/1, duplicate/2, tail_duplicate/2, reverse/1, tail_reverse/1, sublist/2
+        len/1, tail_len/1, duplicate/2, tail_duplicate/2, reverse/1, tail_reverse/1, sublist/2, tail_sublist/2
         ]).
 
 % len list
@@ -50,3 +50,13 @@ tail_reverse([H|T], List) ->
 sublist(_, 0) -> [];
 sublist([], _) -> [];
 sublist([H|T], Limit) -> [H|sublist(T,Limit-1)].
+
+% tail_sublist list, limit
+% returns a list containing limit elements from list using tail recursion
+% {piggy tail!}
+tail_sublist(List, Limit) -> tail_sublist(List, Limit, []).
+
+tail_sublist(_, 0, List) -> List;
+tail_sublist([], _, List) -> List;
+tail_sublist([H|T], Limit, List) when Limit > 0 ->
+  tail_sublist(T, Limit-1, List++[H]).

@@ -1,6 +1,6 @@
 -module(stuff).
 -export([
-        len/1, tail_len/1, duplicate/2, tail_duplicate/2, reverse/1, tail_reverse/1, sublist/2, tail_sublist/2
+        len/1, tail_len/1, duplicate/2, tail_duplicate/2, reverse/1, tail_reverse/1, sublist/2, tail_sublist/2, zip/2, tolerant_zip/2, tail_zip/2
         ]).
 
 % len list
@@ -60,3 +60,24 @@ tail_sublist(_, 0, List) -> List;
 tail_sublist([], _, List) -> List;
 tail_sublist([H|T], Limit, List) when Limit > 0 ->
   tail_sublist(T, Limit-1, List++[H]).
+
+% zip list_a, list_b
+% zips the lists together so that zip([1,2],['a','b']) == [{1,'a'},{2, 'b'}]
+zip([], []) -> [];
+zip([X|Xs], [Y|Ys]) -> [{X,Y}|zip(Xs,Ys)].
+
+% tolerant_zip list_a, list_b
+% zips the lists until one of them ends
+tolerant_zip(_, []) -> [];
+tolerant_zip([], _) -> [];
+tolerant_zip([X|Xs], [Y|Ys]) -> [{X,Y}|tolerant_zip(Xs,Ys)].
+
+% tail_zip list_a, list_b
+% zips the lists until one of them ends applying tail recursivity!
+% {piggy tail! ftw}
+tail_zip(A, B) -> tail_zip(A, B, []).
+
+tail_zip([], _, List) -> List;
+tail_zip(_, [], List) -> List;
+tail_zip([A|As], [B|Bs], List) ->
+  tail_zip(As, Bs, List++[{A,B}]).

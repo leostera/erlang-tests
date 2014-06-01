@@ -11,7 +11,8 @@
         zip/2,
         tolerant_zip/2,
         tail_zip/2,
-        quicksort/1
+        quicksort/1,
+        qsort/1
         ]).
 
 % len list
@@ -107,3 +108,11 @@ partition(Pivot, [H|T], Smaller, Larger) ->
   if H =< Pivot -> partition(Pivot, T, [H|Smaller], Larger);
      H >  Pivot -> partition(Pivot, T, Smaller, [H|Larger])
   end.
+
+% quicksort using list comprehensions
+% yay
+qsort([]) -> [];
+qsort([Pivot|T]) ->
+  qsort([X || X <- T, X < Pivot])
+  ++ [Pivot] ++
+  qsort([X || X <- T, X >= Pivot]).

@@ -9,4 +9,4 @@ cost(pears)     -> 4;
 cost(milk)      -> 7.
 
 total(L) -> 
-  sum(map(fun({What, N}) -> shop:cost(What)*N end, L)).
+  sum([ shop:cost(Name)*Number || {Name, Number} <- L ]).

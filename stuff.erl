@@ -1,6 +1,17 @@
 -module(stuff).
 -export([
-        len/1, tail_len/1, duplicate/2, tail_duplicate/2, reverse/1, tail_reverse/1, sublist/2, tail_sublist/2, zip/2, tolerant_zip/2, tail_zip/2, quicksort/1
+        len/1,
+        tail_len/1,
+        duplicate/2,
+        tail_duplicate/2,
+        reverse/1,
+        tail_reverse/1,
+        sublist/2,
+        tail_sublist/2,
+        zip/2,
+        tolerant_zip/2,
+        tail_zip/2,
+        quicksort/1
         ]).
 
 % len list
